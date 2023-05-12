@@ -1,3 +1,4 @@
+using Hr.Domains.Common.Entities;
 using Hr.Domains.Common.ValueObjects;
 
 namespace Hr.Domains.Features.Employee.ValueObjects;

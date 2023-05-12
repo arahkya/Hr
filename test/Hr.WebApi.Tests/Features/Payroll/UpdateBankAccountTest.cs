@@ -2,13 +2,13 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit;
 using System.Net;
 
-namespace Hr.WebApi.Tests.Features.Employee;
+namespace Hr.WebApi.Tests.Features.Payroll;
 
-public class RegisterPersonTest : IClassFixture<WebApplicationFactory<Program>>
+public class UpdateBankAccountTest : IClassFixture<WebApplicationFactory<Program>>
 {
     private readonly WebApplicationFactory<Program> webApplicationFactory;
 
-    public RegisterPersonTest(WebApplicationFactory<Program> webApplicationFactory)
+    public UpdateBankAccountTest(WebApplicationFactory<Program> webApplicationFactory)
     {
         this.webApplicationFactory = webApplicationFactory;
     }

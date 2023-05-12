@@ -4,11 +4,11 @@ using System.Net;
 
 namespace Hr.WebApi.Tests.Features.Employee;
 
-public class RegisterPersonTest : IClassFixture<WebApplicationFactory<Program>>
+public class UpdateEmployeeAddressTest : IClassFixture<WebApplicationFactory<Program>>
 {
     private readonly WebApplicationFactory<Program> webApplicationFactory;
 
-    public RegisterPersonTest(WebApplicationFactory<Program> webApplicationFactory)
+    public UpdateEmployeeAddressTest(WebApplicationFactory<Program> webApplicationFactory)
     {
         this.webApplicationFactory = webApplicationFactory;
     }
