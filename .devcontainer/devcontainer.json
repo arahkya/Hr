@@ -1,5 +1,12 @@
 {
     "dockerComposeFile" : "docker-compose.yaml",
     "service": "dev-env",
-    "workspaceFolder": "/home/vscode/workspaces/${localWorkspaceFolderBasename}"
+	"workspaceFolder": "/home/vscode/workspaces/${localWorkspaceFolderBasename}",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"hbenl.vscode-test-explorer"
+			]
+		}
+	}
 }
