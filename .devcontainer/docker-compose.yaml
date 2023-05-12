@@ -1,0 +1,16 @@
+version: '3.7'
+services:
+  dev-env:
+    build: 
+      context: .
+    volumes:
+      - ../../:/home/vscode/workspaces:cached
+    command: sleep infinity
+    network_mode: service:dev-db
+  dev-db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Password!123
+    ports:
+      - 1433:1433
