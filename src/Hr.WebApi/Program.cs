@@ -1,9 +1,11 @@
 using Hr.Infrastructure;
+using Hr.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddHrInfrastructure();
+builder.Services.AddHrApplication();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
