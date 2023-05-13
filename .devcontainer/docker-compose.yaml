@@ -1,10 +1,11 @@
-version: '3.7'
+version: '3'
 services:
   dev-env:
     build: 
       context: .
+      dockerfile: dockerfile
     volumes:
-      - ../../:/home/vscode/workspaces:cached
+      - ../../:/workspaces:cached
     command: sleep infinity
     network_mode: service:dev-db
   dev-db:

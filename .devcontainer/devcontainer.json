@@ -1,11 +1,28 @@
 {
+	"name": "Hr Dev Environment",
     "dockerComposeFile" : "docker-compose.yaml",
     "service": "dev-env",
-	"workspaceFolder": "/home/vscode/workspaces/${localWorkspaceFolderBasename}",
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 	"customizations": {
 		"vscode": {
+			"settings": { 
+				"mssql.connections": [
+					{
+						"server": "localhost,1433",
+						"database": "",
+						"authenticationType": "SqlLogin",
+						"user": "sa",
+						"password": "Password!123",
+						"emptyPasswordInput": false,
+						"savePassword": false,
+						"profileName": "mssql-container"
+					}
+				]
+			},			
 			"extensions": [
-				"hbenl.vscode-test-explorer"
+				"hbenl.vscode-test-explorer",
+				"ms-dotnettools.csharp",
+				"ms-mssql.mssql"
 			]
 		}
 	}
