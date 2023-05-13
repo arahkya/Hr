@@ -9,7 +9,7 @@ public static class Startup
     public static IServiceCollection AddHrInfrastructure(this IServiceCollection services)
     {
         services.AddDbContext<DefaultDbContext>(opt => {
-            opt.UseSqlServer("Server=.;Database=HrDb;User Id=sa;Password=vkiydKN8986!;TrustServerCertificate=true");
+            opt.UseSqlServer("Server=dev-db;Database=HrDb;User Id=sa;Password=Password!123;TrustServerCertificate=true");
         });
 
         return services;
