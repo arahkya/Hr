@@ -1,11 +1,22 @@
+using Hr.Application.Interfaces;
 using MediatR;
 
 namespace Hr.Application.Features.Person.Register;
 
 public class Command : IRequestHandler<Request, MediatR.Unit>
 {
-    public Task<Unit> Handle(Request request, CancellationToken cancellationToken)
+    private readonly IApplicationDbContext appDbContext;
+
+    public Command(IApplicationDbContext appDbContext)
     {
-        return Task.FromResult(Unit.Value);
+        this.appDbContext = appDbContext;
+    }
+
+    public async Task<MediatR.Unit> Handle(Request request, CancellationToken cancellationToken)
+    {
+        await appDbContext.AddAsync(request.Person);
+        await appDbContext.CommitAsync();
+
+        return Unit.Value;
     }
 }

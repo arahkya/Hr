@@ -4,6 +4,9 @@ using System.Net;
 using Hr.Domains.Features.Employee;
 using Hr.Domains.Features.Employee.Enums;
 using Hr.Domains.Features.Employee.ValueObjects;
+using Hr.Application.Interfaces;
+using Moq;
+using Hr.Domains.Common.Interfaces;
 
 namespace Hr.WebApi.Tests.Features.Employee;
 
@@ -22,7 +25,20 @@ public class RegisterPersonTest : IClassFixture<WebApplicationFactory<Program>>
         // Arrange
         string url = "/person";
         HttpMethod method = HttpMethod.Post;
-        HttpClient httpClient = webApplicationFactory.CreateClient();
+        HttpClient httpClient = webApplicationFactory.WithWebHostBuilder(cfg =>
+        {
+            cfg.ConfigureServices(opt =>
+            {
+                opt.AddScoped<IApplicationDbContext>(serv =>
+                {
+                    Mock<IApplicationDbContext> mockAppDbContext = new Mock<IApplicationDbContext>();
+                    mockAppDbContext.Setup(p => p.AddAsync(It.IsAny<IEntity>())).ReturnsAsync(1);
+                    mockAppDbContext.Setup(p => p.CommitAsync());
+                    
+                    return mockAppDbContext.Object;
+                });
+            });
+        }).CreateClient();
         Person person = new Person
         {
             Firstname = "Arahk",
@@ -37,7 +53,7 @@ public class RegisterPersonTest : IClassFixture<WebApplicationFactory<Program>>
             Phones = new List<Phone>
             {
                 new Phone { Number = "0816163536", Priority = Priority.First },
-                new Phone { Number = "0917712328", Priority = Priority.Second } 
+                new Phone { Number = "0917712328", Priority = Priority.Second }
             },
             Emails = new List<Email>
             {
@@ -50,7 +66,7 @@ public class RegisterPersonTest : IClassFixture<WebApplicationFactory<Program>>
         request.Content = content;
 
         // Action
-        HttpResponseMessage response = await httpClient.SendAsync(request);        
+        HttpResponseMessage response = await httpClient.SendAsync(request);
 
         // Asserts
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
